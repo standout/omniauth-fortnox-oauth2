@@ -2,7 +2,7 @@
 
 require 'helper'
 
-describe OmniAuth::Strategies::FortnoxOAuth2 do
+describe OmniAuth::Strategies::FortnoxOauth2 do
   def app
     lambda do |_env|
       [200, {}, ['Hello.']]
@@ -10,7 +10,7 @@ describe OmniAuth::Strategies::FortnoxOAuth2 do
   end
 
   subject(:fortnox_oauth2) do
-    OmniAuth::Strategies::FortnoxOAuth2.new(*args)
+    OmniAuth::Strategies::FortnoxOauth2.new(*args)
   end
 
   let(:args) { ['client_id', 'client_secret', options] }
@@ -27,7 +27,7 @@ describe OmniAuth::Strategies::FortnoxOAuth2 do
   describe 'Subclassing Behavior' do
     it 'performs the OmniAuth::Strategy included hook' do
       expect(OmniAuth.strategies)
-        .to include(OmniAuth::Strategies::FortnoxOAuth2)
+        .to include(OmniAuth::Strategies::FortnoxOauth2)
     end
   end
 
