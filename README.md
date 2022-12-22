@@ -46,6 +46,10 @@ Can also be set up with dynamic configuration:
                    end)
 ```
 
+Service account in Fortnox can be configured with the optional parameter `account_type`.
+```ruby
+  account_type: 'service'
+```
 
 You can now access the OmniAuth Fortnox OAuth2 URL: /auth/fortnox_oauth2
 Later a controller can be set up to handle the response after authentication, for example:

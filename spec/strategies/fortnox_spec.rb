@@ -116,6 +116,7 @@ describe OmniAuth::Strategies::FortnoxOauth2 do
       end
 
       before do
+        fortnox_oauth2.options.provider_ignores_state = true
         allow(fortnox_oauth2).to receive(:request) { error_request }
       end
 
@@ -286,6 +287,15 @@ describe OmniAuth::Strategies::FortnoxOauth2 do
       it 'uses the new scope' do
         expect(fortnox_oauth2.authorize_params[:scope])
           .to eq('companyinformation,invoice')
+      end
+    end
+
+    context 'when setting account_type in options' do
+      let(:options) { { 'account_type' => 'service' } }
+
+      it 'uses the new account_type' do
+        expect(fortnox_oauth2.authorize_params[:account_type])
+          .to eq('service')
       end
     end
   end

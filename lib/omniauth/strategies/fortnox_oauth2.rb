@@ -18,7 +18,7 @@ module OmniAuth
         token_method: :post
       }
 
-      option :authorize_options, %i[scope state]
+      option :authorize_options, %i[scope state account_type]
       option :provider_ignores_state, false
 
       uid { raw_info['CompanyInformation']['OrganizationNumber'] }
@@ -57,7 +57,7 @@ module OmniAuth
           client_id: options['client_id'],
           response_type: 'code',
           scope: (options['scope'] || DEFAULT_SCOPE)
-        }
+        }.merge( options['account_type'] ? { account_type: options['account_type'] } : {} )
 
         super
       end
