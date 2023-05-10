@@ -20,6 +20,7 @@ module OmniAuth
 
       option :authorize_options, %i[scope state account_type]
       option :provider_ignores_state, false
+      option :fortnox_redirect_uri, nil
 
       uid { raw_info['CompanyInformation']['OrganizationNumber'] }
 
@@ -66,11 +67,21 @@ module OmniAuth
         options[:callback_url] || (full_host + script_name + callback_path)
       end
 
+      # Currently the only way to support multiple redirect uri's in Fortnox
+      # is to add them sperated using ` ` (space). This will work for the
+      # initial request to get the authorization code.
+      # When trading the code for a token the `redirect_uri` will be matched
+      # using the string entered in Fortnox developer portal. This is beeing
+      # changed but for now the workaround is to pass that string.
+      # It can contain one or multiple uri's.
+      #
       def build_access_token
+        redirect_uri = options.fortnox_redirect_uri || callback_url
         verifier = request.params['code']
+
         client.auth_code.get_token(
           verifier,
-          { redirect_uri: callback_url }.merge(token_params.to_hash(symbolize_keys: true)),
+          { redirect_uri: redirect_uri }.merge(token_params.to_hash(symbolize_keys: true)),
           deep_symbolize(options.auth_token_params)
         )
       end
