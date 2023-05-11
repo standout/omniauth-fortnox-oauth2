@@ -79,17 +79,6 @@ You can also configure the `client_options` by passing in any of the following s
 
 * `token_method`: Override the token_method used by the gem, default `:post`.
 
-## Note
-Currently the only way to support multiple redirect uri's in Fortnox is to add them sperated using ` ` (space). This will work for the initial request to get the authorization code.
-When trading the code for a token the `redirect_uri` will be matched using the string used in Fortnox developer portal. This is beeing changed but for now the workaround is to pass that string.
-This can here be passed as an option `fortnox_redirect_uri`, it can contain one or multiple uri's.
-This will need to exactly match the string in Fortnox.
-
-For example:
-```ruby
-env['omniauth.strategy'].options[:fortnox_redirect_uri] = 'https://test.test/callback https://second-test.test/callback'
-```
-
 ## Auth Hash
 
 Here's an example of an authentication hash available in the callback by accessing `request.env['omniauth.auth']`:
