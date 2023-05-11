@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    omniauth-fortnox-oauth2 (0.0.3)
+    omniauth-fortnox-oauth2 (0.0.4)
       omniauth-oauth2
 
 GEM
