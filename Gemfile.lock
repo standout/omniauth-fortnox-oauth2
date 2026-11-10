@@ -57,7 +57,7 @@ GEM
       byebug (~> 11.0)
       pry (~> 0.13.0)
     public_suffix (6.0.2)
-    rack (3.2.6)
+    rack (3.2.8)
     rack-protection (3.0.5)
       rack
     rake (13.0.6)
